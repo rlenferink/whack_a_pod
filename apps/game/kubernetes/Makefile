@@ -35,7 +35,7 @@ deploy: env creds deployment service
 deploy.minikube: deployment service
 
 deployment:
-	kubectl run game-deployment --image=$(DOCKERREPO)/game --replicas=4 --port=8080 --labels=app=game 
+	kubectl run game-deployment --image=$(DOCKERREPO)/game --image-pull-policy=IfNotPresent --replicas=4 --port=8080 --labels=app=game 
 
 service:
 	kubectl expose deployment game-deployment --name=game --target-port=8080  --type=NodePort --labels="app=api"
